@@ -1,0 +1,49 @@
+{
+  "name": "microframework-express",
+  "version": "0.0.1",
+  "description": "Express.js integration with microframework",
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "Umed Khudoiberdiev",
+    "email": "zarrhost@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PLEEROCK/microframework-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PLEEROCK/microframework-express/issues"
+  },
+  "tags": [
+    "microframework",
+    "express"
+  ],
+  "typings": "./microframework-express.d.ts",
+  "typescript": {
+    "definitions": [
+      "microframework-express.d.ts"
+    ]
+  },
+  "dependencies": {
+    "body-parser": ">=1.0.0",
+    "express": ">=4.0.0",
+    "microframework": ">=0.1.0"
+  },
+  "devDependencies": {
+    "del": "^2.0.2",
+    "dts-generator": "^1.5.0",
+    "fs": "0.0.2",
+    "gulp": "^3.9.0",
+    "gulp-shell": "^0.5.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-typescript": "^2.9.0",
+    "run-sequence": "^1.1.4",
+    "tsd": "^0.6.5",
+    "typescript": "^1.6.2"
+  },
+  "scripts": {
+    "postversion": "./node_modules/.bin/gulp package"
+  }
+}

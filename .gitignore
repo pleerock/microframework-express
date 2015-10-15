@@ -1,0 +1,25 @@
+### OS
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+### IDE
+
+.idea/
+
+### Project
+
+built/
+node_modules/
+typings/
+!typings/references.d.ts
+npm-debug.log

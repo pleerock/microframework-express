@@ -81,8 +81,10 @@ export class ExpressModule implements Module {
     // -------------------------------------------------------------------------
 
     private setupExpress() {
-        this._express = require('express')(); // todo: try to change to new Express()?
+        let express = require('express');
+        this._express = express(); // todo: try to change to new Express()?
         this.useBodyParser();
+        this.setupStatics();
         this._expressServer = this._express.listen(this.getPortFromConfiguration());
     }
 
@@ -109,6 +111,21 @@ export class ExpressModule implements Module {
         }
     }
 
+    private setupStatics() {
+        const express = require('express');
+        const statics = this.getStaticsFromConfiguration();
+        if (statics) {
+            statics.forEach(statics => {
+                const path = this.options.frameworkSettings.baseDirectory + '/' + statics.directory;
+                if (statics.prefix) {
+                    this.express.use(statics.prefix, express.static(path));
+                } else {
+                    this.express.use(express.static(path));
+                }
+            });
+        }
+    }
+
     private getPortFromConfiguration(): number {
         if (!this.configuration || !this.configuration.port) return ExpressModule.DEFAULT_PORT;
         return this.configuration.port ;
@@ -122,6 +139,13 @@ export class ExpressModule implements Module {
     private getBodyParserOptionsFromConfiguration(): Object {
         if (!this.configuration || !this.configuration.bodyParser ||  !this.configuration.bodyParser.options) return undefined;
         return this.configuration.bodyParser.options;
+    }
+
+    private getStaticsFromConfiguration(): { directory: string, prefix: string }[] {
+        if (!this.configuration || !this.configuration.statics) return undefined;
+        return this.configuration.statics.map(statics => {
+            return { directory: typeof statics === 'string' ? statics : statics.directory, prefix: (<{ prefix?: string, directory: string }>statics).prefix };
+        });
     }
 
 }

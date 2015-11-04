@@ -25,4 +25,14 @@ export interface ExpressModuleConfig {
         options: Object;
     };
 
+    /**
+     * List of directories that will be serving static files in Express.
+     *
+     * @see http://expressjs.com/starter/static-files.html
+     */
+    statics: Array<string|{
+        prefix?: string,
+        directory: string
+    }>;
+
 }

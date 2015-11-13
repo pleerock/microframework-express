@@ -4,7 +4,7 @@ import {Module, ModuleInitOptions} from "microframework/Module";
 import {ExpressModuleConfig} from "./ExpressModuleConfig";
 import {ExpressModuleBodyParserTypes} from "./ExpressModuleBodyParserTypes";
 import {Server} from "http";
-import {WrongBodyParserTypeException} from "./exception/WrongBodyParserTypeException";
+import {WrongBodyParserTypeError} from "./error/WrongBodyParserTypeError";
 
 /**
  * Express module integration with microframework.
@@ -85,6 +85,8 @@ export class ExpressModule implements Module {
         this._express = express(); // todo: try to change to new Express()?
         this.useBodyParser();
         this.setupStatics();
+        this.setupSets();
+        this.setupUses();
         this._expressServer = this._express.listen(this.getPortFromConfiguration());
     }
 
@@ -107,8 +109,28 @@ export class ExpressModule implements Module {
                 this.express.use(bodyParser.urlencoded(bodyParserOptions));
                 break;
             default:
-                throw new WrongBodyParserTypeException(bodyParserType);
+                throw new WrongBodyParserTypeError(bodyParserType);
         }
+    }
+
+    private setupUses() {
+        const uses = this.getUsesFromConfiguration();
+        if (!uses) return;
+
+        uses.forEach(use => this.express.use(use.name, use.value));
+    }
+
+    private setupSets() {
+        const sets = this.getSetsFromConfiguration();
+        if (!sets) return;
+
+        sets.forEach(set => {
+            if (set.name) {
+                this.express.use(set.name, set.value);
+            } else {
+                this.express.use(set.value);
+            }
+        });
     }
 
     private setupStatics() {
@@ -146,6 +168,16 @@ export class ExpressModule implements Module {
         return this.configuration.statics.map(statics => {
             return { directory: typeof statics === 'string' ? statics : statics.directory, prefix: (<{ prefix?: string, directory: string }>statics).prefix };
         });
+    }
+
+    private getSetsFromConfiguration(): { name: string, value: any }[] {
+        if (!this.configuration || !this.configuration.sets) return undefined;
+        return this.configuration.sets;
+    }
+
+    private getUsesFromConfiguration(): { name: string, value: any }[] {
+        if (!this.configuration || !this.configuration.uses) return undefined;
+        return this.configuration.uses;
     }
 
 }

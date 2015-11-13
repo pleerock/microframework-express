@@ -1,5 +1,5 @@
-export class WrongBodyParserTypeException extends Error {
-    name = 'WrongBodyParserTypeException';
+export class WrongBodyParserTypeError extends Error {
+    name = 'WrongBodyParserTypeError';
 
     constructor(bodyParserType: string) {
         super();

@@ -30,9 +30,19 @@ export interface ExpressModuleConfig {
      *
      * @see http://expressjs.com/starter/static-files.html
      */
-    statics: Array<string|{
+    statics?: Array<string|{
         prefix?: string,
         directory: string
     }>;
+
+    /**
+     * "set" data that will be used to call expressApp.set(name, value) method
+     */
+    sets?: { name: string, value: any }[];
+
+    /**
+     * "use" data that will be used to call expressApp.use(name, value) method
+     */
+    uses?: { name: string, value: any }[];
 
 }

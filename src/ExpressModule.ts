@@ -31,11 +31,11 @@ export class ExpressModule implements Module {
     // -------------------------------------------------------------------------
 
     getName(): string {
-        return 'ExpressModule';
+        return "ExpressModule";
     }
 
     getConfigurationName(): string {
-        return 'express';
+        return "express";
     }
 
     isConfigurationRequired(): boolean {
@@ -81,7 +81,7 @@ export class ExpressModule implements Module {
     // -------------------------------------------------------------------------
 
     private setupExpress() {
-        let express = require('express');
+        let express = require("express");
         this._express = express(); // todo: try to change to new Express()?
         this.useBodyParser();
         this.setupStatics();
@@ -106,7 +106,7 @@ export class ExpressModule implements Module {
                 this.express.use(bodyParser.raw(bodyParserOptions));
                 break;
             case ExpressModuleBodyParserTypes.URLENCODED:
-                this.express.use(bodyParser.urlencoded(bodyParserOptions));
+                this.express.use(bodyParser.urlencoded(<any>bodyParserOptions));
                 break;
             default:
                 throw new WrongBodyParserTypeError(bodyParserType);
@@ -134,11 +134,11 @@ export class ExpressModule implements Module {
     }
 
     private setupStatics() {
-        const express = require('express');
+        const express = require("express");
         const statics = this.getStaticsFromConfiguration();
         if (statics) {
             statics.forEach(statics => {
-                const path = this.options.frameworkSettings.baseDirectory + '/' + statics.directory;
+                const path = this.options.frameworkSettings.baseDirectory + "/" + statics.directory;
                 if (statics.prefix) {
                     this.express.use(statics.prefix, express.static(path));
                 } else {
@@ -166,7 +166,7 @@ export class ExpressModule implements Module {
     private getStaticsFromConfiguration(): { directory: string, prefix: string }[] {
         if (!this.configuration || !this.configuration.statics) return undefined;
         return this.configuration.statics.map(statics => {
-            return { directory: typeof statics === 'string' ? statics : statics.directory, prefix: (<{ prefix?: string, directory: string }>statics).prefix };
+            return { directory: typeof statics === "string" ? statics : statics.directory, prefix: (<{ prefix?: string, directory: string }>statics).prefix };
         });
     }
 

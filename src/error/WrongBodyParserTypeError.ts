@@ -1,9 +1,9 @@
 export class WrongBodyParserTypeError extends Error {
-    name = 'WrongBodyParserTypeError';
+    name = "WrongBodyParserTypeError";
 
     constructor(bodyParserType: string) {
         super();
-        this.message = 'Given body parser type (' + bodyParserType + ') is not supported';
+        this.message = "Given body parser type (" + bodyParserType + ") is not supported";
     }
 
 }

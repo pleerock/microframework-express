@@ -2,10 +2,10 @@
  * Types that are supported by body parser type in the MFExpress configuration.
  */
 export class ExpressModuleBodyParserTypes {
-    public static RAW = 'raw';
-    public static TEXT = 'text';
-    public static URLENCODED = 'urlencoded';
-    public static JSON = 'json';
+    public static RAW = "raw";
+    public static TEXT = "text";
+    public static URLENCODED = "urlencoded";
+    public static JSON = "json";
 
     /**
      * Checks if given type is supported or not.

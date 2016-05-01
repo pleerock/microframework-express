@@ -93,10 +93,11 @@ export class ExpressModule implements Module {
     }
 
     private useCompression() {
-        if (!this.configuration.compression)
+        const options = this.configuration.compression;
+        if (!options || !options.enabled)
             return;
 
-        this.express.use(compression(this.configuration.compression));
+        this.express.use(compression(options));
     }
 
     private useBodyParser() {

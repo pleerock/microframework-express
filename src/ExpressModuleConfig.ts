@@ -26,11 +26,16 @@ export interface ExpressModuleConfig {
     };
 
     /**
-     * If set, compression middleware will be enabled.
+     * Options for compression middleware.
      *
-     * See https://github.com/expressjs/compression.
+     * See https://github.com/expressjs/compression for more information.
      */
     compression?: {
+
+        /**
+         * If set to true, compression middleware will be enabled.
+         */
+        enabled?: boolean;
 
         /**
          * See https://github.com/expressjs/compression#chunksize regarding the usage.

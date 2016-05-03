@@ -35,7 +35,7 @@ export interface ExpressModuleConfig {
         /**
          * If set to true, compression middleware will be enabled.
          */
-        enabled?: boolean;
+        enabled: boolean;
 
         /**
          * See https://github.com/expressjs/compression#chunksize regarding the usage.
@@ -76,6 +76,18 @@ export interface ExpressModuleConfig {
          * See https://nodejs.org/api/zlib.html#zlib_class_options regarding the usage.
          */
         finishFlush?: number;
+    };
+
+    /**
+     * Cors configuration options. See https://github.com/expressjs/cors#configuration-options
+     */
+    cors: {
+
+        /**
+         * If set to true, cors middleware will be enabled.
+         */
+        enabled: boolean;
+
     };
 
     /**

@@ -1,5 +1,6 @@
 import * as bodyParser from "body-parser";
 import * as compression from "compression";
+import * as cors from "cors";
 import {Express} from "express";
 import {Module, ModuleInitOptions} from "microframework/Module";
 import {ExpressModuleConfig} from "./ExpressModuleConfig";
@@ -85,6 +86,7 @@ export class ExpressModule implements Module {
         const express = require("express");
         this._express = express(); // todo: try to change to new Express()?
         this.useCompression();
+        this.useCors();
         this.useBodyParser();
         this.setupStatics();
         this.setupSets();
@@ -98,6 +100,14 @@ export class ExpressModule implements Module {
             return;
 
         this.express.use(compression(options));
+    }
+
+    private useCors() {
+        const options = this.configuration.cors;
+        if (!options || !options.enabled)
+            return;
+
+        this.express.use(cors(options));
     }
 
     private useBodyParser() {

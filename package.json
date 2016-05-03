@@ -1,7 +1,7 @@
 {
   "name": "microframework-express",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Express.js integration with microframework",
   "license": "Apache-2.0",
   "readmeFilename": "README.md",

@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "body-parser": "~1.15.0",
+    "compression": "^1.6.1",
     "express": "~4.0.0",
     "microframework": "~0.4.0"
   },

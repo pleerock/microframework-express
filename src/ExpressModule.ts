@@ -1,4 +1,5 @@
 import * as bodyParser from "body-parser";
+import * as compression from "compression";
 import {Express} from "express";
 import {Module, ModuleInitOptions} from "microframework/Module";
 import {ExpressModuleConfig} from "./ExpressModuleConfig";
@@ -81,8 +82,9 @@ export class ExpressModule implements Module {
     // -------------------------------------------------------------------------
 
     private setupExpress() {
-        let express = require("express");
+        const express = require("express");
         this._express = express(); // todo: try to change to new Express()?
+        this.useCompression();
         this.useBodyParser();
         this.setupStatics();
         this.setupSets();
@@ -90,9 +92,17 @@ export class ExpressModule implements Module {
         this._expressServer = this._express.listen(this.getPortFromConfiguration());
     }
 
+    private useCompression() {
+        const options = this.configuration.compression;
+        if (!options || !options.enabled)
+            return;
+
+        this.express.use(compression(options));
+    }
+
     private useBodyParser() {
-        let bodyParserType = this.getBodyParserTypeFromConfiguration();
-        let bodyParserOptions = this.getBodyParserOptionsFromConfiguration();
+        const bodyParserType = this.getBodyParserTypeFromConfiguration();
+        const bodyParserOptions = this.getBodyParserOptionsFromConfiguration();
         if (!bodyParserType) return;
 
         switch (bodyParserType) {

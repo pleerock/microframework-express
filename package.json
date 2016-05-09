@@ -21,28 +21,28 @@
     "express"
   ],
   "dependencies": {
-    "body-parser": "~1.15.0",
+    "body-parser": "~1.15.1",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
-    "express": "~4.0.0",
-    "microframework": "~0.4.0"
+    "express": "~4.13.4",
+    "microframework": "~0.5.1"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "chai-as-promised": "^5.2.0",
-    "del": "^2.0.2",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
     "gulp-replace": "^0.5.4",
-    "gulp-shell": "^0.5.0",
-    "gulp-tslint": "^4.3.3",
+    "gulp-shell": "^0.5.2",
+    "gulp-tslint": "^5.0.0",
     "gulpclass": "0.1.0",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
-    "tslint": "^3.5.0",
+    "tslint": "^3.9.0",
     "tslint-stylish": "^2.1.0-beta",
     "typescript": "^1.8.7",
-    "typings": "^0.7.7"
+    "typings": "^0.8.1"
   }
 }

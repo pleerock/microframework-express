@@ -1,7 +1,7 @@
 {
   "name": "microframework-express",
   "private": true,
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Express.js integration with microframework",
   "license": "Apache-2.0",
   "readmeFilename": "README.md",
@@ -20,6 +20,10 @@
     "microframework",
     "express"
   ],
+  "peerDependencies": {
+    "express": "~4.0.0",
+    "microframework": "~0.5.0"
+  },
   "dependencies": {
     "body-parser": "~1.15.1",
     "compression": "^1.6.1",
